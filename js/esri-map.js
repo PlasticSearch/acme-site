@@ -1,7 +1,7 @@
-/*global WildRydes _config*/
+/*global AcmeDomains _config*/
 
-var WildRydes = window.WildRydes || {};
-WildRydes.map = WildRydes.map || {};
+var AcmeDomains = window.AcmeDomains || {};
+AcmeDomains.map = AcmeDomains.map || {};
 
 (function esriMapScopeWrapper($) {
     require([
@@ -18,7 +18,7 @@ WildRydes.map = WildRydes.map || {};
         Graphic, Point, TextSymbol,
         PictureMarkerSymbol, webMercatorUtils
     ) {
-        var wrMap = WildRydes.map;
+        var wrMap = AcmeDomains.map;
 
         var map = new Map({ basemap: 'gray-vector' });
 
@@ -38,14 +38,14 @@ WildRydes.map = WildRydes.map || {};
             }
         });
 
-        var unicornSymbol = new PictureMarkerSymbol({
-            url: '/images/unicorn-icon.png',
+        var acmedomainSymbol = new PictureMarkerSymbol({
+            url: '/images/acmedomain-icon.png',
             width: '25px',
             height: '25px'
         });
 
         var pinGraphic;
-        var unicornGraphic;
+        var acmedomainGraphic;
 
         function updateCenter(newValue) {
             wrMap.center = {
@@ -100,12 +100,12 @@ WildRydes.map = WildRydes.map || {};
                     longitude: origin.longitude + deltaLon,
                     latitude: origin.latitude + deltaLat
                 });
-                view.graphics.remove(unicornGraphic);
-                unicornGraphic = new Graphic({
+                view.graphics.remove(acmedomainGraphic);
+                acmedomainGraphic = new Graphic({
                     geometry: point,
-                    symbol: unicornSymbol
+                    symbol: acmedomainSymbol
                 });
-                view.graphics.add(unicornGraphic);
+                view.graphics.add(acmedomainGraphic);
                 if (progressPct < 1) {
                     requestAnimationFrame(step);
                 } else {
